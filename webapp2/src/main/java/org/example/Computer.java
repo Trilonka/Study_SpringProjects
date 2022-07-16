@@ -19,7 +19,7 @@ public class Computer {
     public String toString() {
         return "Computer{" +
                 "id=" + id +
-                ", player output=" + player.playMusic() +
+                ", player output=" + player.playMusic(Genre.ROCK) +
                 '}';
     }
 }
