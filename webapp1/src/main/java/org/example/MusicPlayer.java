@@ -1,11 +1,10 @@
 package org.example;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class MusicPlayer {
 
-    private List<Music> musicList = new ArrayList<>();
+    private List<Music> musicList;
 
     private String name;
     private int volume;
