@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.Random;
 
-@Component
+//@Component
 public class MusicPlayer {
 
     @Value("${musicPlayer.name}")
@@ -18,7 +18,7 @@ public class MusicPlayer {
     private RockMusic music1;
     private ClassicalMusic music2;
 
-    @Autowired
+    //@Autowired
     public MusicPlayer(RockMusic music1, ClassicalMusic music2)
     {
         this.music1 = music1;
@@ -41,15 +41,8 @@ public class MusicPlayer {
         this.volume = volume;
     }
 
-    public String playMusic(Genre genre) {
+    public String playMusic() {
         Random random = new Random();
-        switch (genre) {
-            case ROCK:
-                return "Playing: " + music1.songs[random.nextInt(3)];
-            case CLASSICAL:
-                return "Playing: " + music2.songs[random.nextInt(3)];
-            default:
-                return "Noting to play";
-        }
+        return "Playing: " + music1.songs[random.nextInt(3)];
     }
 }
