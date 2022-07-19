@@ -1,6 +1,10 @@
 package org.example.config;
 
+import org.springframework.web.filter.HiddenHttpMethodFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
+
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
 
 public class MySpringMvcDispatcherServletInitializer
         extends AbstractAnnotationConfigDispatcherServletInitializer
@@ -18,5 +22,16 @@ public class MySpringMvcDispatcherServletInitializer
     @Override
     protected String[] getServletMappings() {
         return new String[] {"/"};
+    }
+
+    @Override
+    public void onStartup(ServletContext context) throws ServletException {
+        super.onStartup(context);
+        registerHiddenFiledFilter(context);
+    }
+
+    private void registerHiddenFiledFilter(ServletContext context) {
+        context.addFilter("hiddenHttpMethodFilter",
+                new HiddenHttpMethodFilter()).addMappingForUrlPatterns(null, true, "/*");
     }
 }
