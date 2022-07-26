@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class PersonDAO {
@@ -18,29 +19,34 @@ public class PersonDAO {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public List<Person> getPeople() {
+    public List<Person> show() {
         return jdbcTemplate.query("select * from person", new BeanPropertyRowMapper<>(Person.class));
     }
 
-    public Person getPersonById(int id) {
-        return jdbcTemplate.query("select * from person where id=?", new BeanPropertyRowMapper<>(Person.class), id)
+    public Person getById(int id) {
+        return jdbcTemplate.query("select * from person where person_id=?", new BeanPropertyRowMapper<>(Person.class), id)
                 .stream().findAny().orElse(null);
     }
 
-    public void deletePersonById(int id) {
-        jdbcTemplate.update("delete from person where id=?", id);
+    public Optional<Person> getByFullName(String fullName) {
+        return jdbcTemplate.query("select * from person where fullname=?", new BeanPropertyRowMapper<>(Person.class), fullName)
+                .stream().findAny();
     }
 
-    public void savePerson(Person person) {
-        jdbcTemplate.update("insert into person(fullName, age) values(?, ?)",
-                person.getFullName(),
-                person.getAge());
+    public void deleteById(int id) {
+        jdbcTemplate.update("delete from person where person_id=?", id);
     }
 
-    public void updatePerson(int id, Person person) {
-        jdbcTemplate.update("update person set fullName=?, age=? where id=?",
+    public void save(Person person) {
+        jdbcTemplate.update("insert into person(fullName, year) values(?, ?)",
                 person.getFullName(),
-                person.getAge(),
+                person.getYear());
+    }
+
+    public void update(int id, Person person) {
+        jdbcTemplate.update("update person set fullName=?, year=? where person_id=?",
+                person.getFullName(),
+                person.getYear(),
                 id);
     }
 }

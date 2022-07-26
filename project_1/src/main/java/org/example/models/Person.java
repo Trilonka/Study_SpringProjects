@@ -1,24 +1,21 @@
 package org.example.models;
 
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.Pattern;
 
 public class Person {
 
-    private int id;
+    private int person_id;
 
-    @NotNull(message = "Full name should not be empty")
-    @Size(min = 3, max = 200, message = "Full name should be between 3 and 200 characters")
+    @Pattern(regexp = "[A-ZА-ЯЁ][a-zа-яё]+ [A-ZА-ЯЁ][a-zа-яё]+ [A-ZА-ЯЁ][a-zа-яё]+",
+             message = "Your full name should be in this format: Lastname Firstname Patronymic")
     private String fullName;
 
-    @Min(value = 0, message = "Age should be greater than 0")
-    private int age;
+    private int year;
 
-    public Person(int id, String full_name, int age) {
-        this.id = id;
-        this.fullName = full_name;
-        this.age = age;
+    public Person(int person_id, String fullName, int year) {
+        this.person_id = person_id;
+        this.fullName = fullName;
+        this.year = year;
     }
 
     public Person() {
@@ -28,23 +25,23 @@ public class Person {
         return fullName;
     }
 
-    public void setFullName(String full_name) {
-        this.fullName = full_name;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
-    public int getAge() {
-        return age;
+    public int getYear() {
+        return year;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setYear(int year) {
+        this.year = year;
     }
 
-    public int getId() {
-        return id;
+    public int getPerson_id() {
+        return person_id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setPerson_id(int id) {
+        this.person_id = id;
     }
 }

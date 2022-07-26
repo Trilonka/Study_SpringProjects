@@ -1,45 +1,48 @@
 package org.example.models;
 
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotEmpty;
 
 public class Book {
 
-    private int id;
+    private int book_id;
 
-    @NotNull(message = "Name of the book should not be empty")
-    private String name;
+    private int person_id;
 
-    @NotNull(message = "Author field should not be empty")
+    @NotEmpty(message = "Name of the book should not be empty")
+    private String title;
+
+    @NotEmpty(message = "Author field should not be empty")
     private String author;
 
-    @Min(value = 0, message = "Year should be greater than 0")
+    @Min(value = 1, message = "Year should be greater than 0")
     private int year;
 
-    public Book() {
-    }
-
-    public Book(int id, String name, String author, int year) {
-        this.id = id;
-        this.name = name;
+    public Book(int book_id, int person_id, String title, String author, int year) {
+        this.book_id = book_id;
+        this.person_id = person_id;
+        this.title = title;
         this.author = author;
         this.year = year;
     }
 
-    public int getId() {
-        return id;
+    public Book() {
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public int getBook_id() {
+        return book_id;
     }
 
-    public String getName() {
-        return name;
+    public void setBook_id(int book_id) {
+        this.book_id = book_id;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getAuthor() {
@@ -56,5 +59,13 @@ public class Book {
 
     public void setYear(int year) {
         this.year = year;
+    }
+
+    public int getPerson_id() {
+        return person_id;
+    }
+
+    public void setPerson_id(int person_id) {
+        this.person_id = person_id;
     }
 }
