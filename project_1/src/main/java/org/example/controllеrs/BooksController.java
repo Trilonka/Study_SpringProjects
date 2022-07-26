@@ -91,7 +91,7 @@ public class BooksController {
         bookDAO.update(id, book);
         bookDAO.updatePerson_id(id, book.getPerson_id());
 
-        return "redirect:/books/"+id;
+        return "redirect:/books/" + id;
     }
 
     @DeleteMapping("/{book_id}")
