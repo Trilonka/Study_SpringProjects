@@ -74,7 +74,7 @@ public class BooksController {
                                @PathVariable("book_id") int book_id)
     {
         bookDAO.updatePerson_id(book_id, book.getPerson_id());
-        return "redirect:/books/"+book_id;
+        return "redirect:/books/" + book_id;
     }
 
     @PatchMapping("/{book_id}")
